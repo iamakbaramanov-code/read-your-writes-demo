@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: ryw_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ryw_demo
+    ports:
+      - "5432:5432"
+    volumes:
+      - ryw_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ryw_demo"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: ryw_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ryw_redis_data:/data
+
+volumes:
+  ryw_postgres_data:
+  ryw_redis_data:
