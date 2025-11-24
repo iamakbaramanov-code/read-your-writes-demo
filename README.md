@@ -307,18 +307,7 @@ curl http://localhost:5000/api/products
   - writes (`/api/me/profile`)
   - regular reads (`/api/products`)
 
----
 
-## 🧱 Next steps / ideas
-
-- Wire `PostgresReplica` to an actual physical replica.
-- Replace time-based read-your-writes with **LSN-based**:
-  - Store `pg_current_wal_lsn()` after writes.
-  - Compare with replica’s `pg_last_wal_replay_lsn()`.
-- Add real auth (JWT / cookies) instead of demo header.
-- Add health checks for leader / followers.
-
----
 
 ## 📝 License
 
